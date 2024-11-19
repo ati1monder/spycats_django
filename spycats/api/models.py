@@ -11,16 +11,16 @@ class SpyCat(models.Model):
     salary = models.IntegerField('Salary') # it is also possible to use DecimalField, but in this scenario IntegerField will be used
 
 class Mission(models.Model):
-    cat = models.ForeignKey(SpyCat, on_delete=models.CASCADE)
+    cat = models.ForeignKey(SpyCat, on_delete=models.CASCADE, null=True, blank=True)
     complete = models.BooleanField(default=False)
 
-    # def delete(self):
-    #     if self.cat is not None:
-    #         raise ValidationError('Cannot delete mission since it is alredy assigned to a cat.')
-    #     super().delete()
+    def delete(self):
+        if self.cat is not None:
+            raise ValidationError('Cannot delete mission since it is alredy assigned to a cat.')
+        super().delete()
         
 class Target(models.Model):
-    mission = models.ForeignKey(Mission, on_delete=models.DO_NOTHING, related_name='targets')
+    mission = models.ForeignKey(Mission, on_delete=models.CASCADE, related_name='targets')
     name = models.CharField('Name', max_length=50)
     country = models.CharField('Country', max_length=50)
     notes = models.TextField('Notes', max_length=500)
