@@ -3,8 +3,8 @@ A Django REST API for managing missions and their associated targets. This API a
 # Setup
 ## Prerequisites
 - Python 3.8 or higher
-- Django 3.x or higher
-- Django REST Framework 3.x or higher
+- Django 5.1.x or higher
+- Django REST Framework 3.15.x or higher
 ## Installation
 1. Clone the repository:
 ```https://github.com/ati1monder/spycats_django```
